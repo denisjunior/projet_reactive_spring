@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  mariadb-prescription:
+    env_file:
+      - prescription-db-variables.env
+    image: "mariadb:${PRESCRIPTION_MARIADB_VERSION}"
+    restart: 'always'
+    ports:
+      - '${PRESCRIPTION_MARIADB_POST}:3306'
+    volumes:
+      - ${PRESCRIPTION_MARIADB_DATA_DIR}:/var/lib/mysql
+      - ${PRESCRIPTION_MARIADB_LOG_DIR}:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PRESCRIPTION_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${PRESCRIPTION_MYSQL_DATABASE}
+      MYSQL_USER: ${PRESCRIPTION_MYSQL_USER}
+      MYSQL_PASSWORD: ${PRESCRIPTION_MYSQL_PASSWORD}
+  mariadb-rendezvous:
+    env_file:
+      - rendezvous-db-variables.env
+    image: "mariadb:${RENDEZVOUS_MARIADB_VERSION}"
+    restart: 'always'
+    ports:
+      - '${RENDEZVOUS_MARIADB_POST}:3306'
+    volumes:
+      - ${RENDEZVOUS_MARIADB_DATA_DIR}:/var/lib/mysql
+      - ${RENDEZVOUS_MARIADB_LOG_DIR}:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${RENDEZVOUS_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${RENDEZVOUS_MYSQL_DATABASE}
+      MYSQL_USER: ${RENDEZVOUS_MYSQL_USER}
+      MYSQL_PASSWORD: ${RENDEZVOUS_MYSQL_PASSWORD}

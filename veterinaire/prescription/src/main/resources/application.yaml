@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:${PRESCRIPTION_MARIADB_POST}/${PRESCRIPTION_MYSQL_DATABASE}
+    username: ${PRESCRIPTION_MYSQL_USER}
+    password: ${PRESCRIPTION_MYSQL_PASSWORD}
+  application:
+    name: prescription-app
+  config:
+    import: optional:configserver:http://localhost:7800
+  profiles:
+    active: local

@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:${RENDEZVOUS_MARIADB_POST}/${RENDEZVOUS_MYSQL_DATABASE}
+    username: ${RENDEZVOUS_MYSQL_USER}
+    password: ${RENDEZVOUS_MYSQL_PASSWORD}
+  application:
+    name: rendezvous-app
+  config:
+    import: optional:configserver:http://localhost:7800
+  profiles:
+    active: local
